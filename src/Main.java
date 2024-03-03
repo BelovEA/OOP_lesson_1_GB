@@ -1,31 +1,31 @@
-import clients.Animal;
-import clients.Dog;
-import clients.Lion;
-import clients.Bird;
-import clients.Fish;
-import clients.Owner;
-
+import Workers.VetClinic;
+import Workers.Doctor;
+import Workers.Nurse;
+import clients.impl.*;
+import clients.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
-        Animal leva = new Lion("Лева", 200, LocalDate.now(), new Owner());
-        Lion puzo = new Lion("Кот", 35, LocalDate.now(), new Owner());
-        Dog lila = new Dog("Лила", 21, LocalDate.now(), new Owner());
-        Fish nemo = new Fish("Немо", 1, LocalDate.now(), new Owner());
-        Bird kesha = new Bird("Кеша", 3, LocalDate.now(), new Owner());
-
-        List<Animal> animals = new ArrayList<>();
-        animals.add(puzo);
-        animals.add(leva);
-        animals.add(lila);
-        animals.add(nemo);
-        animals.add(kesha);
-        System.out.println(animals);
+        Doctor doc = new Doctor("Mr Esuoh", LocalDate.of
+                (1995, 5, 21), LocalDate.of
+                (2020, 10, 31), 120000);
+        Nurse nurse = new Nurse("Lida", LocalDate.of
+                (1977, 1, 20), LocalDate.of
+                (2022, 9, 13), 90000);
+        Animal fish = new Fish("Пучеглаз", 0.45f, LocalDate.now(), new Owner());
+        Animal duck = new Duck("Дональд", 3, LocalDate.now(), null);
+        Animal bird = new Bird("Кеша", 5, null, null);
+        VetClinic clinic = new VetClinic("Вет+");
+        clinic.addPersonall(doc);
+        clinic.addPersonall(nurse);
+        clinic.addAnimal(fish);
+        clinic.addAnimal(duck);
+        nurse.Vacinate(bird);
+        System.out.println(clinic.getIllGoable());
+        System.out.println(clinic.getSalary(doc));
+        clinic.setSalary(doc, 180000);
+        System.out.println(clinic.getSalary(doc));
     }
-
 }
